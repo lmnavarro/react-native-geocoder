@@ -55,8 +55,8 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void reverseGeocoding(
-            Double latitude,
-            Double longitude,
+            double latitude,
+            double longitude,
             Promise promise) {
         List<Address> addressList = new ArrayList<>();
         try {
@@ -84,8 +84,8 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void geocodeToAddressAtLocation(
             String name,
-            Double latitude,
-            Double longitude,
+            double latitude,
+            double longitude,
             Promise promise) {
 
         double latRadian = Math.toRadians(latitude);
@@ -108,10 +108,10 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void geocodeToAddressAtRegion(
             String name,
-            Double latSouthwest,
-            Double lonSouthwest,
-            Double latNortheast,
-            Double lonNortheast,
+            double latSouthwest,
+            double lonSouthwest,
+            double latNortheast,
+            double lonNortheast,
             Promise promise) {
 
         List<Address> addressList = new ArrayList<>();
