@@ -5,10 +5,37 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(sampleMethod:(NSString *)stringArgument numberParameter:(nonnull NSNumber *)numberArgument callback:(RCTResponseSenderBlock)callback)
-{
-    // TODO: Implement some actually useful functionality
-    callback(@[[NSString stringWithFormat: @"numberArgument: %@ stringArgument: %@", numberArgument, stringArgument]]);
+
+RCT_EXPORT_METHOD(reverseGeocoding:(double)latitude withLongitude:(double)longitude
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
+    resolve(nil);
 }
+
+
+RCT_EXPORT_METHOD(geocodeAnAddress:(NSString *)name
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
+    resolve(nil);
+}
+
+
+RCT_EXPORT_METHOD(geocodeToAddressAtLocation:(NSString *)name withLatitude(double)latitude withLongitude:(double)longitude
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
+    resolve(nil);
+}
+
+
+RCT_EXPORT_METHOD(geocodeToAddressAtRegion:(NSString *)name
+                  withLatSouthwest(double)latSouthwest
+                  withLonSouthwest:(double)lonSouthwest
+                  withLatNortheast(double)latNortheast
+                  withLonNortheast:(double)lonNortheast
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
+    resolve(nil);
+}
+
 
 @end
