@@ -7,9 +7,10 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(reverseGeocoding:(double)latitude
                   longitude:(double)longitude
-                  resolver:(RCTPrommiseResolbeBlock)resolve
+                  resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
+    NSLog(@"Start Reverse Geocoding With latitde: %f And longitude: %f", latitude, longitude);
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -18,13 +19,17 @@ RCT_EXPORT_METHOD(reverseGeocoding:(double)latitude
             reject(@"ERROR_FOUND", @"Geocode failed", error);
             return; // Request failed, log error
         }
+        
         if (!placemarks){
             resolve(nil);
             return;
         }
+        NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
         for (CLPlacemark *placemark in placemarks) {
-            NSLog(@"addressToMap %@ ", placemark);
+            NSLog(@"CLPlacemark %@ ", placemark);
+            NSLog(@"CLPlacemark In Address Dictionary %@", placemark.addressDictionary);
             //NSDictionary *addressDictionary = placemark.addressDictionary;
+            resolve(placemark.addressDictionary);
         }
         
     }];
@@ -34,11 +39,12 @@ RCT_EXPORT_METHOD(geocodeAnAddress:(NSString *)addressName
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
+    NSLog(@"Start Gecode An Address With: %@", addressName);
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:addressName completionHandler:^(NSArray *placemarks, NSError *error){
         if (error) {
             NSLog(@"Geocode failed with error: %@", error);
-            reject("ERROR_FOUND", "Geocode failed", error);
+            reject(@"ERROR_FOUND", @"Geocode failed", error);
             return; // Request failed, log error
         }
         if (!placemarks){
@@ -58,11 +64,12 @@ RCT_EXPORT_METHOD(geocodeToAddressAtLocation:(NSString *)addressName
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
+    NSLog(@"Start Gecode To Address At Location With: %@", addressName);
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:addressName completionHandler:^(NSArray *placemarks, NSError *error){
         if (error) {
             NSLog(@"Geocode failed with error: %@", error);
-            reject("ERROR_FOUND", "Geocode failed", error);
+            reject(@"ERROR_FOUND", @"Geocode failed", error);
             return; // Request failed, log error
         }
         if (!placemarks){
@@ -84,11 +91,12 @@ RCT_EXPORT_METHOD(geocodeToAddressAtRegion:(NSString *)addressName
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
+    NSLog(@"Start Gecode To Addres At Region With: %@", addressName);
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:addressName completionHandler:^(NSArray *placemarks, NSError *error){
         if (error) {
             NSLog(@"Geocode failed with error: %@", error);
-            reject("ERROR_FOUND", "Geocode failed", error);
+            reject(@"ERROR_FOUND", @"Geocode failed", error);
             return; // Request failed, log error
         }
         if (!placemarks){
