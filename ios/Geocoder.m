@@ -20,35 +20,32 @@ RCT_EXPORT_METHOD(reverseGeocoding:(double)latitude
             return; // Request failed, log error
         }
         
+        NSMutableArray *result = [NSMutableArray array];
         if (!placemarks){
-            resolve(nil);
+            resolve(result);
             return;
         }
         NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
         
-        if(!(placemarks.count>0)){
-            resolve(nil);
-            return;
+        for (CLPlacemark *placemark in placemarks) {
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
+            [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
+            [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
+            [place setValue:placemark.locality forKey:@"locality"];
+            [place setValue:placemark.subLocality forKey:@"sub_locality"];
+            [place setValue:placemark.administrativeArea forKey:@"admin_area"];
+            [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
+            [place setValue:placemark.postalCode forKey:@"postal_code"];
+            [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
+            [place setValue:placemark.country forKey:@"country_name"];
+
+            [place setValue:latitde forKey:@"latitude"];
+            [place setValue:longitude forKey:@"longitude"];
+
+            [result addObject:place];
         }
-        
-        CLPlacemark *placemark = placemarks[0];
-        
-        NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
-        [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
-        [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
-        [place setValue:placemark.locality forKey:@"locality"];
-        [place setValue:placemark.subLocality forKey:@"sub_locality"];
-        [place setValue:placemark.administrativeArea forKey:@"admin_area"];
-        [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
-        [place setValue:placemark.postalCode forKey:@"postal_code"];
-        [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
-        [place setValue:placemark.country forKey:@"country_name"];
-                
-        [place setValue:@"0.0" forKey:@"latitude"];
-        [place setValue:@"0.0" forKey:@"longitude"];
-        
-        
-        resolve(place);
+
+        resolve(result);
     }];
 }
 
@@ -64,14 +61,33 @@ RCT_EXPORT_METHOD(geocodeAnAddress:(NSString *)addressName
             reject(@"ERROR_FOUND", @"Geocode failed", error);
             return; // Request failed, log error
         }
+        
+        NSMutableArray *result = [NSMutableArray array];
         if (!placemarks){
-            resolve(nil);
+            resolve(result);
             return;
         }
+        NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
+        
         for (CLPlacemark *placemark in placemarks) {
-            NSLog(@"addressToMap %@ ", placemark);
-            //NSDictionary *addressDictionary = placemark.addressDictionary;
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
+            [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
+            [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
+            [place setValue:placemark.locality forKey:@"locality"];
+            [place setValue:placemark.subLocality forKey:@"sub_locality"];
+            [place setValue:placemark.administrativeArea forKey:@"admin_area"];
+            [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
+            [place setValue:placemark.postalCode forKey:@"postal_code"];
+            [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
+            [place setValue:placemark.country forKey:@"country_name"];
+
+            [place setValue:latitde forKey:@"latitude"];
+            [place setValue:longitude forKey:@"longitude"];
+
+            [result addObject:place];
         }
+
+        resolve(result);
     }];
 }
 
@@ -89,14 +105,33 @@ RCT_EXPORT_METHOD(geocodeToAddressAtLocation:(NSString *)addressName
             reject(@"ERROR_FOUND", @"Geocode failed", error);
             return; // Request failed, log error
         }
+        
+        NSMutableArray *result = [NSMutableArray array];
         if (!placemarks){
-            resolve(nil);
+            resolve(result);
             return;
         }
+        NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
+        
         for (CLPlacemark *placemark in placemarks) {
-            NSLog(@"addressToMap %@ ", placemark);
-            //NSDictionary *addressDictionary = placemark.addressDictionary;
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
+            [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
+            [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
+            [place setValue:placemark.locality forKey:@"locality"];
+            [place setValue:placemark.subLocality forKey:@"sub_locality"];
+            [place setValue:placemark.administrativeArea forKey:@"admin_area"];
+            [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
+            [place setValue:placemark.postalCode forKey:@"postal_code"];
+            [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
+            [place setValue:placemark.country forKey:@"country_name"];
+
+            [place setValue:latitde forKey:@"latitude"];
+            [place setValue:longitude forKey:@"longitude"];
+
+            [result addObject:place];
         }
+
+        resolve(result);
     }];
 }
 
@@ -116,14 +151,33 @@ RCT_EXPORT_METHOD(geocodeToAddressAtRegion:(NSString *)addressName
             reject(@"ERROR_FOUND", @"Geocode failed", error);
             return; // Request failed, log error
         }
+        
+        NSMutableArray *result = [NSMutableArray array];
         if (!placemarks){
-            resolve(nil);
+            resolve(result);
             return;
         }
+        NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
+        
         for (CLPlacemark *placemark in placemarks) {
-            NSLog(@"addressToMap %@ ", placemark);
-            //NSDictionary *addressDictionary = placemark.addressDictionary;
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
+            [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
+            [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
+            [place setValue:placemark.locality forKey:@"locality"];
+            [place setValue:placemark.subLocality forKey:@"sub_locality"];
+            [place setValue:placemark.administrativeArea forKey:@"admin_area"];
+            [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
+            [place setValue:placemark.postalCode forKey:@"postal_code"];
+            [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
+            [place setValue:placemark.country forKey:@"country_name"];
+
+            [place setValue:latitde forKey:@"latitude"];
+            [place setValue:longitude forKey:@"longitude"];
+
+            [result addObject:place];
         }
+
+        resolve(result);
     }];
 }
 

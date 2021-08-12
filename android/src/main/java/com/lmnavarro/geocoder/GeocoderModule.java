@@ -21,24 +21,6 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
     private static final int MAX_RESULTS = 10;
     private static final int RADIO = 250;
 
-    private static final String ADDRESS = "address";
-    private static final String ADMIN_AREA = "admin_area";
-    private static final String COUNTRY_CODE = "country_code";
-    private static final String COUNTRY_NAME = "country_name";
-    private static final String FEATURE_NAME = "feature_name";
-    private static final String LATITUDE = "latitude";
-    private static final String LOCALE = "locale";
-    private static final String LOCALITY = "locality";
-    private static final String LONGITUDE = "longitude";
-    private static final String PHONE = "phone";
-    private static final String POSTAL_CODE = "postal_code";
-    private static final String PREMISES = "premises";
-    private static final String SUB_ADMIN_AREA = "sub_admin_area";
-    private static final String SUB_LOCALITY = "sub_locality";
-    private static final String SUB_THOROUGHFARE = "sub_thoroughfare";
-    private static final String THOROUGHFARE = "thoroughfare";
-    private static final String URL = "url";
-
     private final ReactApplicationContext reactContext;
     private final Geocoder geocoder;
 
@@ -134,27 +116,38 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
         promise.resolve(result);
     }
 
+
+    private static final String ADDRESS = "address";
+    private static final String THOROUGHFARE = "thoroughfare";
+    private static final String SUB_THOROUGHFARE = "sub_thoroughfare";
+    private static final String LOCALITY = "locality";
+    private static final String SUB_LOCALITY = "sub_locality";
+    private static final String ADMIN_AREA = "admin_area";
+    private static final String SUB_ADMIN_AREA = "sub_admin_area";
+    private static final String POSTAL_CODE = "postal_code";
+    private static final String COUNTRY_CODE = "country_code";
+    private static final String COUNTRY_NAME = "country_name";
+    private static final String LATITUDE = "latitude";
+    private static final String LONGITUDE = "longitude";
+    private static final String LOCALE = "locale";
+
+
     private WritableMap addressToMap(Address address) {
         WritableMap value = Arguments.createMap();
-
-        value.putArray(ADDRESS, addressLinesToArray(address));
+        value.putArray(ADDRESS, address.getAddressLine(0));
+        value.putString(THOROUGHFARE, address.getThoroughfare());
+        value.putString(SUB_THOROUGHFARE, address.getSubThoroughfare());
+        value.putString(LOCALITY, address.getLocality());
+        value.putString(SUB_LOCALITY, address.getSubLocality());
         value.putString(ADMIN_AREA, address.getAdminArea());
+        value.putString(SUB_ADMIN_AREA, address.getSubAdminArea());
+        value.putString(POSTAL_CODE, address.getPostalCode());
         value.putString(COUNTRY_CODE, address.getCountryCode());
         value.putString(COUNTRY_NAME, address.getCountryName());
-        value.putString(FEATURE_NAME, address.getFeatureName());
+        
         value.putDouble(LATITUDE, address.getLatitude());
-        value.putString(LOCALE, address.getLocale().getDisplayLanguage());
-        value.putString(LOCALITY, address.getLocality());
         value.putDouble(LONGITUDE, address.getLongitude());
-        value.putString(PHONE, address.getPhone());
-        value.putString(POSTAL_CODE, address.getPostalCode());
-        value.putString(PREMISES, address.getPremises());
-        value.putString(SUB_ADMIN_AREA, address.getSubAdminArea());
-        value.putString(SUB_LOCALITY, address.getSubLocality());
-        value.putString(SUB_THOROUGHFARE, address.getSubThoroughfare());
-        value.putString(THOROUGHFARE, address.getThoroughfare());
-        value.putString(URL, address.getUrl());
-
+        value.putString(LOCALE, address.getLocale().getDisplayLanguage());
         return value;
     }
 
