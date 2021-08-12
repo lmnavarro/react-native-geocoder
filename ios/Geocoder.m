@@ -28,7 +28,7 @@ RCT_EXPORT_METHOD(reverseGeocoding:(double)latitude
         NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
         
         for (CLPlacemark *placemark in placemarks) {
-            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
             [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
@@ -39,8 +39,8 @@ RCT_EXPORT_METHOD(reverseGeocoding:(double)latitude
             [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
             [place setValue:placemark.country forKey:@"country_name"];
 
-            [place setValue:latitde forKey:@"latitude"];
-            [place setValue:longitude forKey:@"longitude"];
+            [place setValue:[[NSNumber alloc] initWithDouble:latitude] forKey:@"latitude"];
+            [place setValue:[[NSNumber alloc] initWithDouble:longitude] forKey:@"longitude"];
 
             [result addObject:place];
         }
@@ -70,7 +70,7 @@ RCT_EXPORT_METHOD(geocodeAnAddress:(NSString *)addressName
         NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
         
         for (CLPlacemark *placemark in placemarks) {
-            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
             [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
@@ -81,8 +81,8 @@ RCT_EXPORT_METHOD(geocodeAnAddress:(NSString *)addressName
             [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
             [place setValue:placemark.country forKey:@"country_name"];
 
-            [place setValue:latitde forKey:@"latitude"];
-            [place setValue:longitude forKey:@"longitude"];
+            //[place setValue:latitde forKey:@"latitude"];
+            //[place setValue:longitude forKey:@"longitude"];
 
             [result addObject:place];
         }
@@ -125,8 +125,8 @@ RCT_EXPORT_METHOD(geocodeToAddressAtLocation:(NSString *)addressName
             [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
             [place setValue:placemark.country forKey:@"country_name"];
 
-            [place setValue:latitde forKey:@"latitude"];
-            [place setValue:longitude forKey:@"longitude"];
+            //[place setValue:latitde forKey:@"latitude"];
+            //[place setValue:longitude forKey:@"longitude"];
 
             [result addObject:place];
         }
@@ -160,7 +160,7 @@ RCT_EXPORT_METHOD(geocodeToAddressAtRegion:(NSString *)addressName
         NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
         
         for (CLPlacemark *placemark in placemarks) {
-            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
             [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
@@ -171,8 +171,8 @@ RCT_EXPORT_METHOD(geocodeToAddressAtRegion:(NSString *)addressName
             [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
             [place setValue:placemark.country forKey:@"country_name"];
 
-            [place setValue:latitde forKey:@"latitude"];
-            [place setValue:longitude forKey:@"longitude"];
+            //[place setValue:latitde forKey:@"latitude"];
+            //[place setValue:longitude forKey:@"longitude"];
 
             [result addObject:place];
         }
