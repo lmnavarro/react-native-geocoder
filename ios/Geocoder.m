@@ -25,13 +25,30 @@ RCT_EXPORT_METHOD(reverseGeocoding:(double)latitude
             return;
         }
         NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
-        for (CLPlacemark *placemark in placemarks) {
-            NSLog(@"CLPlacemark %@ ", placemark);
-            NSLog(@"CLPlacemark In Address Dictionary %@", placemark.addressDictionary);
-            //NSDictionary *addressDictionary = placemark.addressDictionary;
-            resolve(placemark.addressDictionary);
+        
+        if(!(placemarks.count>0)){
+            resolve(nil);
+            return;
         }
         
+        CLPlacemark *placemark = placemarks[0];
+        
+        NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
+        [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
+        [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
+        [place setValue:placemark.locality forKey:@"locality"];
+        [place setValue:placemark.subLocality forKey:@"sub_locality"];
+        [place setValue:placemark.administrativeArea forKey:@"admin_area"];
+        [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
+        [place setValue:placemark.postalCode forKey:@"postal_code"];
+        [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
+        [place setValue:placemark.country forKey:@"country_name"];
+                
+        [place setValue:@"0.0" forKey:@"latitude"];
+        [place setValue:@"0.0" forKey:@"longitude"];
+        
+        
+        resolve(place);
     }];
 }
 
