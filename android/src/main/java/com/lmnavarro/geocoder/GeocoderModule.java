@@ -134,7 +134,7 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
 
     private WritableMap addressToMap(Address address) {
         WritableMap value = Arguments.createMap();
-        value.putArray(ADDRESS, address.getAddressLine(0));
+        value.putString(ADDRESS, address.getAddressLine(0));
         value.putString(THOROUGHFARE, address.getThoroughfare());
         value.putString(SUB_THOROUGHFARE, address.getSubThoroughfare());
         value.putString(LOCALITY, address.getLocality());
@@ -149,16 +149,5 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
         value.putDouble(LONGITUDE, address.getLongitude());
         value.putString(LOCALE, address.getLocale().getDisplayLanguage());
         return value;
-    }
-
-    private WritableArray addressLinesToArray(Address address) {
-        int i = 0;
-        WritableArray lines = Arguments.createArray();
-        while (address.getAddressLine(i) != null) {
-            String line = address.getAddressLine(i);
-            lines.pushString(line);
-            i++;
-        }
-        return lines;
     }
 }
