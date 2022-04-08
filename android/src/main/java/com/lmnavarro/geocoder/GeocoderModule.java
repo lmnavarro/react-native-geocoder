@@ -117,7 +117,7 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
     }
 
 
-    private static final String ADDRESS = "address";
+    private static final String ADDRESS = "name";
     private static final String THOROUGHFARE = "thoroughfare";
     private static final String SUB_THOROUGHFARE = "subThoroughfare";
     private static final String LOCALITY = "locality";

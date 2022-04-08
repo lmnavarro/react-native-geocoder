@@ -28,7 +28,7 @@ RCT_EXPORT_METHOD(reverseGeocoding:(double)latitude
         NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
         
         for (CLPlacemark *placemark in placemarks) {
-            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
             [place setValue:placemark.subThoroughfare forKey:@"subThoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
@@ -70,7 +70,7 @@ RCT_EXPORT_METHOD(geocodeAnAddress:(NSString *)addressName
         NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
         
         for (CLPlacemark *placemark in placemarks) {
-            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
             [place setValue:placemark.subThoroughfare forKey:@"subThoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
@@ -114,7 +114,7 @@ RCT_EXPORT_METHOD(geocodeToAddressAtLocation:(NSString *)addressName
         NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
         
         for (CLPlacemark *placemark in placemarks) {
-            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
             [place setValue:placemark.subThoroughfare forKey:@"subThoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
@@ -160,7 +160,7 @@ RCT_EXPORT_METHOD(geocodeToAddressAtRegion:(NSString *)addressName
         NSLog(@"Getting %lu Places", (unsigned long)placemarks.count);
         
         for (CLPlacemark *placemark in placemarks) {
-            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
+            NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"name", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
             [place setValue:placemark.subThoroughfare forKey:@"subThoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
