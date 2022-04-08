@@ -1,23 +1,22 @@
+export interface LatLng {
+  latitude: number;
+  longitude: number;
+}
+
+export interface Address extends LatLng {
+  name: string;
+  thoroughfare?: string;
+  subThoroughfare?: string;
+  locality?: string;
+  subLocality?: string;
+  administrativeArea?: string;
+  subAdministrativeArea?: string;
+  postalCode?: string;
+  countryCode?: string;
+  country?: string;
+}
+
 declare namespace Geocoder {
-
-  interface LatLng {
-    latitude: number;
-    longitude: number;
-  }
-
-  interface Address extends LatLng {
-    address: string;
-    thoroughfare?: string;
-    sub_thoroughfare?: string;
-    locality?: string;
-    sub_locality?: string;
-    admin_area?: string;
-    sub_admin_area?: string;
-    postal_code?: string;
-    country_code?: string;
-    country_name?: string;
-    locale?: string;
-  }
 
   function reverseGeocoding(coordinate: LatLng): Promise<Address[]>;
 

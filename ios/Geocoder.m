@@ -30,14 +30,14 @@ RCT_EXPORT_METHOD(reverseGeocoding:(double)latitude
         for (CLPlacemark *placemark in placemarks) {
             NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
-            [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
+            [place setValue:placemark.subThoroughfare forKey:@"subThoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
-            [place setValue:placemark.subLocality forKey:@"sub_locality"];
-            [place setValue:placemark.administrativeArea forKey:@"admin_area"];
-            [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
-            [place setValue:placemark.postalCode forKey:@"postal_code"];
-            [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
-            [place setValue:placemark.country forKey:@"country_name"];
+            [place setValue:placemark.subLocality forKey:@"subLocality"];
+            [place setValue:placemark.administrativeArea forKey:@"administrativeArea"];
+            [place setValue:placemark.subAdministrativeArea forKey:@"subAdministrativeArea"];
+            [place setValue:placemark.postalCode forKey:@"postalCode"];
+            [place setValue:placemark.ISOcountryCode forKey:@"countryCode"];
+            [place setValue:placemark.country forKey:@"country"];
 
             [place setValue:[[NSNumber alloc] initWithDouble:latitude] forKey:@"latitude"];
             [place setValue:[[NSNumber alloc] initWithDouble:longitude] forKey:@"longitude"];
@@ -72,14 +72,14 @@ RCT_EXPORT_METHOD(geocodeAnAddress:(NSString *)addressName
         for (CLPlacemark *placemark in placemarks) {
             NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
-            [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
+            [place setValue:placemark.subThoroughfare forKey:@"subThoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
-            [place setValue:placemark.subLocality forKey:@"sub_locality"];
-            [place setValue:placemark.administrativeArea forKey:@"admin_area"];
-            [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
-            [place setValue:placemark.postalCode forKey:@"postal_code"];
-            [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
-            [place setValue:placemark.country forKey:@"country_name"];
+            [place setValue:placemark.subLocality forKey:@"subLocality"];
+            [place setValue:placemark.administrativeArea forKey:@"administrativeArea"];
+            [place setValue:placemark.subAdministrativeArea forKey:@"subAdministrativeArea"];
+            [place setValue:placemark.postalCode forKey:@"postalCode"];
+            [place setValue:placemark.ISOcountryCode forKey:@"countryCode"];
+            [place setValue:placemark.country forKey:@"country"];
 
             //[place setValue:latitde forKey:@"latitude"];
             //[place setValue:longitude forKey:@"longitude"];
@@ -116,14 +116,14 @@ RCT_EXPORT_METHOD(geocodeToAddressAtLocation:(NSString *)addressName
         for (CLPlacemark *placemark in placemarks) {
             NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
-            [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
+            [place setValue:placemark.subThoroughfare forKey:@"subThoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
-            [place setValue:placemark.subLocality forKey:@"sub_locality"];
-            [place setValue:placemark.administrativeArea forKey:@"admin_area"];
-            [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
-            [place setValue:placemark.postalCode forKey:@"postal_code"];
-            [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
-            [place setValue:placemark.country forKey:@"country_name"];
+            [place setValue:placemark.subLocality forKey:@"subLocality"];
+            [place setValue:placemark.administrativeArea forKey:@"administrativeArea"];
+            [place setValue:placemark.subAdministrativeArea forKey:@"subAdministrativeArea"];
+            [place setValue:placemark.postalCode forKey:@"postalCode"];
+            [place setValue:placemark.ISOcountryCode forKey:@"countryCode"];
+            [place setValue:placemark.country forKey:@"country"];
 
             //[place setValue:latitde forKey:@"latitude"];
             //[place setValue:longitude forKey:@"longitude"];
@@ -162,14 +162,14 @@ RCT_EXPORT_METHOD(geocodeToAddressAtRegion:(NSString *)addressName
         for (CLPlacemark *placemark in placemarks) {
             NSMutableDictionary *place = [[NSMutableDictionary alloc] initWithObjectsAndKeys:placemark.name, @"address", nil];
             [place setValue:placemark.thoroughfare forKey:@"thoroughfare"];
-            [place setValue:placemark.subThoroughfare forKey:@"sub_thoroughfare"];
+            [place setValue:placemark.subThoroughfare forKey:@"subThoroughfare"];
             [place setValue:placemark.locality forKey:@"locality"];
-            [place setValue:placemark.subLocality forKey:@"sub_locality"];
-            [place setValue:placemark.administrativeArea forKey:@"admin_area"];
-            [place setValue:placemark.subAdministrativeArea forKey:@"sub_admin_area"];
-            [place setValue:placemark.postalCode forKey:@"postal_code"];
-            [place setValue:placemark.ISOcountryCode forKey:@"country_code"];
-            [place setValue:placemark.country forKey:@"country_name"];
+            [place setValue:placemark.subLocality forKey:@"subLocality"];
+            [place setValue:placemark.administrativeArea forKey:@"administrativeArea"];
+            [place setValue:placemark.subAdministrativeArea forKey:@"subAdministrativeArea"];
+            [place setValue:placemark.postalCode forKey:@"postalCode"];
+            [place setValue:placemark.ISOcountryCode forKey:@"countryCode"];
+            [place setValue:placemark.country forKey:@"country"];
 
             //[place setValue:latitde forKey:@"latitude"];
             //[place setValue:longitude forKey:@"longitude"];

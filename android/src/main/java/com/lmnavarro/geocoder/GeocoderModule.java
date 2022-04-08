@@ -119,17 +119,16 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
 
     private static final String ADDRESS = "address";
     private static final String THOROUGHFARE = "thoroughfare";
-    private static final String SUB_THOROUGHFARE = "sub_thoroughfare";
+    private static final String SUB_THOROUGHFARE = "subThoroughfare";
     private static final String LOCALITY = "locality";
-    private static final String SUB_LOCALITY = "sub_locality";
-    private static final String ADMIN_AREA = "admin_area";
-    private static final String SUB_ADMIN_AREA = "sub_admin_area";
-    private static final String POSTAL_CODE = "postal_code";
-    private static final String COUNTRY_CODE = "country_code";
-    private static final String COUNTRY_NAME = "country_name";
+    private static final String SUB_LOCALITY = "subLocality";
+    private static final String ADMIN_AREA = "administrativeArea";
+    private static final String SUB_ADMIN_AREA = "subAdministrativeArea";
+    private static final String POSTAL_CODE = "postalCode";
+    private static final String COUNTRY_CODE = "countryCode";
+    private static final String COUNTRY_NAME = "country";
     private static final String LATITUDE = "latitude";
     private static final String LONGITUDE = "longitude";
-    private static final String LOCALE = "locale";
 
 
     private WritableMap addressToMap(Address address) {
@@ -147,7 +146,6 @@ public class GeocoderModule extends ReactContextBaseJavaModule {
         
         value.putDouble(LATITUDE, address.getLatitude());
         value.putDouble(LONGITUDE, address.getLongitude());
-        value.putString(LOCALE, address.getLocale().getDisplayLanguage());
         return value;
     }
 }
